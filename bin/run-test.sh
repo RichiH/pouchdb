@@ -50,10 +50,10 @@ if [[ ! -z $SERVER ]]; then
   fi
 fi
 
-printf 'Waiting for host to start .'
+printf 'Waiting for host ($COUCH_HOST) to start .'
 WAITING=0
 until $(curl --output /dev/null --silent --head --fail --max-time 2 $COUCH_HOST); do
-    if [ $WAITING -eq 10 ]; then
+    if [ $WAITING -eq 20 ]; then
         printf '\nHost failed to start\n'
         exit 1
     fi
