@@ -24,7 +24,7 @@ if [[ ! -z $SERVER ]]; then
     ./node_modules/.bin/pouchdb-server -n -p 6984 $FLAGS &
     export SERVER_PID=$!
   elif [ "$SERVER" == "couchdb-master" ]; then
-    export COUCH_HOST='http://127.0.0.1:15984'
+    export COUCH_HOST='http://127.0.0.1:5984'
   elif [ "$SERVER" == "pouchdb-express-router" ]; then
     node ./tests/misc/pouchdb-express-router.js &
     export SERVER_PID=$!
@@ -53,7 +53,7 @@ fi
 printf 'Waiting for host to start .'
 WAITING=0
 until $(curl --output /dev/null --silent --head --fail --max-time 2 $COUCH_HOST); do
-    if [ $WAITING -eq 4 ]; then
+    if [ $WAITING -eq 10 ]; then
         printf '\nHost failed to start\n'
         exit 1
     fi
