@@ -22,7 +22,7 @@ addons:
 
 before_install:
   - docker pull klaemo/couchdb:2.0-dev
-  - docker run -d -p 15984:5984 klaemo/couchdb:2.0-dev -n 1 --with-admin-party-please
+  - docker run -d -p 5984:15984 klaemo/couchdb:2.0-dev -n 1 --with-admin-party-please
 
 before_script:
   - "export DISPLAY=:99.0"
